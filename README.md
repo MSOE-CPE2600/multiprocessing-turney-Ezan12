@@ -31,4 +31,4 @@ Here is a graph plotting the total runtime (in seconds) against the number of pr
 
 3. Discussion
 
-The graph shows adding more processes to a program doesn't always speed up the run time. Although there was a signifcant difference going from 1 to 5 processes, we didn't really see that same change going from 10 to 20. This is probably because of the systems limited number of cores. Once all cores are in use, adding more processes just gives the system more overhead to handle all the different processes, rather than adding more speed. 
+The graph shows adding more processes to a program doesn't always speed up the run time. Although there was a signifcant difference going from 1 to 5 processes, we didn't really see that same change going from 10 to 20. This is probably because of the systems limited number of cores. Once all cores are in use, adding more processes just gives the system more overhead to deal with, rather than adding more speed. 
