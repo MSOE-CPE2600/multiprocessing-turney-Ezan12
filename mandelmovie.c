@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
 
     printf("Starting to generate %d frames using %d processes...\n", TOTAL_FRAMES, num_processes);
 
-    double x_coord = -0.576504825;
-    double y_coord =  0.657298208;
+    double x_coord = -0.743643;
+    double y_coord = 0.131825;
     double start_scale = 0.01;
     double end_scale = 0.0001;
 
