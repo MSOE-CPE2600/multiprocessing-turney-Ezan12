@@ -7,21 +7,20 @@
 #include <sys/wait.h>  
 
 #define DEFAULT_PROCS 1
-#define DEFAULT_THREADS 1  // New constant!
+#define DEFAULT_THREADS 1  
 #define TOTAL_FRAMES 50
 
 int main(int argc, char *argv[]) {
     int num_processes = DEFAULT_PROCS;
-    int num_threads = DEFAULT_THREADS; // New variable!
+    int num_threads = DEFAULT_THREADS; 
     int opt;
 
-    // Notice the updated argument string: "n:t:"
-    // This tells getopt to look for -n (with a value) AND -t (with a value).
+
     while ((opt = getopt(argc, argv, "n:t:")) != -1) {
         
         if (opt == 'n') {
             num_processes = atoi(optarg);
-        } else if (opt == 't') { // New logic for the -t flag
+        } else if (opt == 't') { 
             num_threads = atoi(optarg);
         } else if (opt == '?') { 
             fprintf(stderr, "Usage: %s -n <num_processes> [-t <num_threads>]\n", argv[0]);
@@ -31,9 +30,7 @@ int main(int argc, char *argv[]) {
             exit(EXIT_FAILURE);
         }
     }
-    // ... (rest of your startup checks)
-
-    // ... your process pool logic will now start here ...
+    
     printf("Starting to generate %d frames using %d processes...\n", TOTAL_FRAMES, num_processes);
 
     double x_coord = -0.743643;
