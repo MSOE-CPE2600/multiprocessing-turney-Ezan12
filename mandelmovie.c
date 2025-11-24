@@ -7,31 +7,33 @@
 #include <sys/wait.h>  
 
 #define DEFAULT_PROCS 1
+#define DEFAULT_THREADS 1  // New constant!
 #define TOTAL_FRAMES 50
 
 int main(int argc, char *argv[]) {
     int num_processes = DEFAULT_PROCS;
+    int num_threads = DEFAULT_THREADS; // New variable!
     int opt;
 
-    while ((opt = getopt(argc, argv, "n:")) != -1) {
+    // Notice the updated argument string: "n:t:"
+    // This tells getopt to look for -n (with a value) AND -t (with a value).
+    while ((opt = getopt(argc, argv, "n:t:")) != -1) {
         
         if (opt == 'n') {
-            num_processes = atoi(optarg); 
+            num_processes = atoi(optarg);
+        } else if (opt == 't') { // New logic for the -t flag
+            num_threads = atoi(optarg);
         } else if (opt == '?') { 
-            
-            fprintf(stderr, "Usage: %s -n <num_processes>\n", argv[0]);
-            exit(EXIT_FAILURE); 
+            fprintf(stderr, "Usage: %s -n <num_processes> [-t <num_threads>]\n", argv[0]);
+            exit(EXIT_FAILURE);
         } else {
-           
-            fprintf(stderr, "Usage: %s -n <num_processes>\n", argv[0]);
-            exit(EXIT_FAILURE); 
+            fprintf(stderr, "Usage: %s -n <num_processes> [-t <num_threads>]\n", argv[0]);
+            exit(EXIT_FAILURE);
         }
     }
+    // ... (rest of your startup checks)
 
-    if (num_processes <= 0) {
-        num_processes = DEFAULT_PROCS;
-    }
-
+    // ... your process pool logic will now start here ...
     printf("Starting to generate %d frames using %d processes...\n", TOTAL_FRAMES, num_processes);
 
     double x_coord = -0.743643;
@@ -61,10 +63,11 @@ int main(int argc, char *argv[]) {
             char filename[100];
             sprintf(filename, "mandel%d.jpg", i);
 
-            char x_str[50], y_str[50], s_str[50];
+            char x_str[50], y_str[50], s_str[50], t_str[10];;
             sprintf(x_str, "%f", x_coord);
             sprintf(y_str, "%f", y_coord);
             sprintf(s_str, "%f", scale);
+            sprintf(t_str, "%d", num_threads);
             
             printf("Child %d (Frame %d): Launching ./mandel -s %s -o %s\n",
                    getpid(), i, s_str, filename);
@@ -73,7 +76,8 @@ int main(int argc, char *argv[]) {
                    "mandel",       
                    "-x", x_str,    
                    "-y", y_str,    
-                   "-s", s_str,    
+                   "-s", s_str,   
+                   "-t", t_str, 
                    "-o", filename, 
                    NULL);          
 
