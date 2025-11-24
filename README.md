@@ -49,13 +49,7 @@ The command line argument -t was added to both mandel.c (to set the thread count
 2. Runtime Results
 The following table shows the "real" runtime (in seconds) to generate 50 frames, varying both the number of processes (-n) and the number of threads per process (-t).
 
-|# Processes (↓ n) / 
-|# Threads (→ t) | **1** | **2** | **5** | **10** | **20** |
-| **1** |       44.550s | 27.553s | 18.798s | 12.891s | 10.824s |
-| **2** |        22.009s | 16.520s | 12.032s | 9.816s | 9.137s |
-| **5** |        12.794s | 10.176s | 9.326s | 8.615s | 8.735s |
-| **10** |       9.925s | 8.559s | 8.725s | 8.439s | 8.362s |
-| **20** |       9.106s | 8.504s | 9.692s | 8.574s | 9.798s |
+![Benchmark Results Table](benchmark_table.png)
 
 3. Discussion 
 
