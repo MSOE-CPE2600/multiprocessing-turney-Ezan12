@@ -1,4 +1,5 @@
 /// 
+//  Ezan Hamdia, Section 131
 //  jpegrw.c
 //  Based on example code found here:
 //  https://www.tspi.at/2020/03/20/libjpegexample.html
